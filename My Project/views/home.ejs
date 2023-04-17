@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>
+            TODO APP
+        </title>
+        <style>
+            h3{
+                display: inline;
+                color:rgb(119, 5, 5);
+            }
+            #due{
+                margin-left: 50%;
+            }
+        </style>
+    
+    </head>
+    
+    <body background="todo.jpg" style="background-repeat: no-repeat ; background-size:cover ;">
+        <h1 style="color:rgb(210, 30, 105)">
+           <marquee> 
+            TODO APP
+          </marquee>
+        </h1>
+        <hr>
+   
+            <form action="/create-task" method="POST">
+                <h3>DESCRIPTION</h3>
+                <input type="text" name="desc" placeholder="What do you need to do?" required>
+                <hr>
+                <span>
+                <h3>CATEGORY</h3>
+                <select name="category" required>
+                    <option value="personal">Personal</option>
+                    <option value="work">Work</option>
+                    <option value="school">School</option>
+                    <option value="cleaning">Cleaning</option>
+                    <option value="other">Other</option>
+                </select>
+                </span>
+                <span>
+                    <h3 id="due">DUE DATE</h3>
+                    <input type="date" name="date" required>
+                </span>
+                <hr>
+                <center><button type="submit">ADD TASK</button></center>
+            </form>
+            <form action="/delete-task" method="POST">
+                <center><button type="submit" id>DELETE TASKS</button></center>
+                <div>
+                    
+                    <ul>
+                       
+                           
+                        <% for (let i of task_list) { %> 
+                           <div> 
+                                <li>
+                                    <input type="checkbox" name="delete_list" value=<%=i.id%>><br>
+                                    <i class="fa fa-bookmark-o" aria-hidden="true"></i><h3><%= i.desc %><br></h3>
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i><h3><%= i.date %><br></h3>
+                                    <i class="fa fa-id-card-o" aria-hidden="true"></i><h3><%= i.category%></h3>
+                                </li>
+                            </div>
+                           
+                        <% } %>
+                    </ul>
+                
+                </div>
+            </form>
+   
+    </body>
+</html>
